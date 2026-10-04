@@ -17,6 +17,7 @@ export class PersonaMetadataTags {
   constructor() {
     effect(() => {
       if (this.persona() != null) {
+        this.tags = []
         // convert persona data into tags
         // step 1. convert gender
         if (this.persona().gender == 'FEMALE') {

@@ -4,7 +4,7 @@ import { TagInputItemConfiguration } from '../../shared/models/shared.models';
 export const PersonasRelationshipTypes: PersonaRelationshipType[] = [
   {
     displayedName: 'Friendship',
-    key: 'FRIEND'
+    key: 'FRIENDSHIP'
   },
   {
     displayedName: 'Romantic',
@@ -15,7 +15,7 @@ export const PersonasRelationshipTypes: PersonaRelationshipType[] = [
 export const RelationshipsInputOptions: TagInputItemConfiguration[] = [
   {
     displayedName: 'Friendship',
-    objectKey: 'FRIEND',
+    objectKey: 'FRIENDSHIP',
   },
   {
     displayedName: 'Romantic',

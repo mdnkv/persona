@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { PersonaResponse, UpdatePersonaRequest } from '../models/personas.models';
-import { PERSONAS } from '../../mock';
+import { PersonaService } from '../services/persona.services';
 
 interface UpdatePersonaState {
   isFormLoading: boolean
@@ -20,20 +20,31 @@ export const UpdatePersonaStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withMethods((store) => {
-    const router: Router = inject(Router);
+    const router: Router = inject(Router)
+    const personaService: PersonaService = inject(PersonaService)
+
     return {
       loadPersonaById(id: string){
-        // todo
-        const persona = PERSONAS.find(e => e.id == id)
-        if (persona != undefined){
-          patchState(store, { isPersonaLoaded: true, currentPersona: persona });
-        }
+        personaService.getPersonaById(id).subscribe({
+          next: result => {
+            patchState(store, {isPersonaLoaded: true, currentPersona: result, isFormLoading: false})
+          },
+          error: (err) => {
+            console.log(err)
+          }
+        })
       },
       updatePersona(payload: UpdatePersonaRequest) {
         patchState(store, { isFormLoading: true });
         console.log(payload);
-        // todo
-        router.navigateByUrl('/personas');
+        personaService.updatePersona(payload).subscribe({
+          next: result => {
+            router.navigateByUrl('/personas')
+          },
+          error: (err) => {
+            console.log(err)
+          }
+        })
       },
     };
   }),
