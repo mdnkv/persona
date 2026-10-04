@@ -1,0 +1,33 @@
+<form [formGroup]="form" (submit)="formSubmit()">
+  <!-- Name -->
+  <div class="field">
+    <label class="label">Name</label>
+    <div class="control">
+      <input class="input" formControlName="name" placeholder="Give a name to the persona">
+    </div>
+    @if (form.get('name')?.touched && form.get('name')?.hasError('required')){
+      <p class="help is-danger">Please enter a name to continue</p>
+    }
+    @if (form.get('name')?.touched && form.get('name')?.hasError('maxlength')){
+      <p class="help is-danger">Name cannot exceed 50 characters</p>
+    }
+  </div>
+  <!-- Gender -->
+  <div class="block">
+    <app-tag-input
+      [label]="'Gender'"
+      [options]="genders"
+      [selectedKey]="gender()"
+      (onSelectOption)="gender.set($event)"/>
+  </div>
+
+  <!-- Actions -->
+  <div class="buttons">
+    <button class="button app-action-button is-rounded"
+            [class.is-loading]="createPersonaStore.isFormLoading()"
+            [disabled]="form.invalid">
+      Create
+    </button>
+  </div>
+
+</form>

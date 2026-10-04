@@ -1,0 +1,57 @@
+<form [formGroup]="form" (submit)="formSubmit()">
+  <!-- Name -->
+  <div class="field">
+    <label class="label">Name</label>
+    <div class="control">
+      <input class="input" formControlName="name" placeholder="Give a name to the persona" [class.has-skeleton]="!updatePersonaStore.isPersonaLoaded()">
+    </div>
+    @if (form.get('name')?.touched && form.get('name')?.hasError('required')){
+      <p class="help is-danger">Please enter a name to continue</p>
+    }
+    @if (form.get('name')?.touched && form.get('name')?.hasError('maxlength')){
+      <p class="help is-danger">Name cannot exceed 50 characters</p>
+    }
+  </div>
+  <!-- Gender -->
+  <div class="block">
+    <app-tag-input
+      [label]="'Gender'"
+      [options]="genders"
+      [selectedKey]="gender()"
+      (onSelectOption)="gender.set($event)"/>
+  </div>
+
+  <!-- Relationship -->
+  <div class="block">
+    <app-tag-input
+      [label]="'Relationship'"
+      [options]="relationships"
+      [selectedKey]="relationship()"
+      (onSelectOption)="relationship.set($event)"/>
+  </div>
+
+  <!-- Backstory -->
+  <div class="field">
+    <label class="label">Backstory (optional)</label>
+    <div class="control">
+      <textarea class="textarea has-fixed-size"
+                [class.has-skeleton]="!updatePersonaStore.isPersonaLoaded()"
+                formControlName="backstory"
+                rows="3"></textarea>
+    </div>
+    @if (form.get('backstory')?.touched && form.get('backstory')?.hasError('maxlength')){
+      <p class="help is-danger">Name cannot exceed 500 characters</p>
+    }
+  </div>
+
+  <!-- Actions -->
+  <div class="buttons">
+    <button class="button app-action-button is-rounded"
+            [class.has-skeleton]="!updatePersonaStore.isPersonaLoaded()"
+            [class.is-loading]="updatePersonaStore.isFormLoading()"
+            [disabled]="form.invalid">
+      Create
+    </button>
+  </div>
+
+</form>

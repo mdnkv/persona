@@ -1,0 +1,28 @@
+<div class="section">
+  <div class="container">
+    <!-- Header -->
+    <div class="block">
+      <div class="level is-mobile">
+        <div class="level-left">
+          <div class="level-item">
+            <p class="title is-2">Personas</p>
+          </div>
+        </div>
+        <div class="level-right">
+          <div class="level-item">
+            <a class="button is-rounded app-action-button" [routerLink]="['/personas/create']">
+              <span class="icon">
+                <i class="bx bx-user-plus"></i>
+              </span>
+              <span>New</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Personas grid -->
+    <div class="block">
+      <app-personas-grid/>
+    </div>
+  </div>
+</div>

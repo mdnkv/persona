@@ -1,0 +1,18 @@
+@if (personasStore.isLoading()){
+  <!-- Loading indicator -->
+} @else {
+  @if (personasStore.personas().length > 0){
+    <div class="columns is-multiline">
+      @for (persona of personasStore.personas(); track persona.id){
+        <div class="column is-half is-full-mobile">
+          <app-persona-grid-item
+            [persona]="persona"
+            (onOpenPersonaSettings)="onOpenPersonaSettings($event)"
+          />
+        </div>
+      }
+    </div>
+  } @else {
+    <!-- Empty indicator -->
+  }
+}

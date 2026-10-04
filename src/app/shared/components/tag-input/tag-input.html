@@ -1,0 +1,15 @@
+<p class="label">{{label()}}</p>
+<div class="tags">
+  @for (option of options(); track $index){
+    <span class="tag is-rounded is-clickable is-medium"
+          [class.is-primary]="option.objectKey == selectedKey()"
+          (click)="onSelectOption.emit(option.objectKey)">
+      @if (option.icon){
+        <span class="icon">
+          <i [class]="option.icon"></i>
+        </span>
+      }
+      <span>{{option.displayedName}}</span>
+    </span>
+  }
+</div>

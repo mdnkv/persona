@@ -1,0 +1,5 @@
+@import "bulma/css/bulma.css";
+
+.app-action-button {
+  background: linear-gradient(45deg, #4159d0 0.000%, #c84fc0 50.000%, #ffcd70 100.000%);
+}

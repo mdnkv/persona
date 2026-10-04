@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-content">
+    <!-- Persona name -->
+    <div class="block">
+      <p class="is-size-5">{{persona().name}}</p>
+    </div>
+    <!-- Persona metadata -->
+    <div class="block">
+      <app-persona-metadata-tags [persona]="persona()"/>
+    </div>
+    <!-- Actions -->
+    <div class="block">
+      <div class="buttons">
+        <app-icon-button (onButtonClicked)="onChatClicked()" [icon]="'bx bx-message-square'"/>
+        <app-icon-button (onButtonClicked)="onSettingsClicked()" [icon]="'bx bx-cog'"/>
+      </div>
+    </div>
+  </div>
+</div>
