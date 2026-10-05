@@ -10,11 +10,14 @@ import { Router } from '@angular/router';
   templateUrl: './personas-grid.html',
 })
 export class PersonasGrid {
-  router: Router = inject(Router)
-  protected readonly personasStore = inject(PersonasStore)
+  router: Router = inject(Router);
+  protected readonly personasStore = inject(PersonasStore);
 
-  onOpenPersonaSettings(personaId: string){
-    this.router.navigate(['/personas/update', personaId])
+  onOpenPersonaSettings(personaId: string) {
+    this.router.navigate(['/personas/update', personaId]);
   }
 
+  onOpenChat(personaId: string) {
+    this.router.navigate(['/chats/persona', personaId]);
+  }
 }

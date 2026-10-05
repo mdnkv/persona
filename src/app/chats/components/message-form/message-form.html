@@ -1,0 +1,31 @@
+<div class="app-message-form-container">
+  <div class="columns is-centered">
+    <div class="column is-half is-full-mobile">
+      <form class="app-message-form-content" [formGroup]="form" (submit)="formSubmit()">
+        <!-- Input -->
+        <textarea class="app-message-form-textarea"
+          placeholder="Say something"
+          formControlName="content"
+          rows="2"></textarea>
+        <!-- Actions -->
+        <div class="level is-mobile">
+          <!-- Menu -->
+          <!-- TODO -->
+          <div class="level-left"></div>
+          <!-- Button -->
+          <div class="level-right">
+            <div class="level-item">
+              @if (form.valid){
+                <button type="submit" class="button app-action-button">
+                  <span class="icon">
+                    <i class="bx bx-send"></i>
+                  </span>
+                </button>
+              }
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

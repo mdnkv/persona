@@ -1,0 +1,10 @@
+<div class="app-chat-header">
+  @if (chatStore.isPersonaLoaded()){
+    <div class="block">
+      <p class="title is-3">{{chatStore.persona()!.name}}</p>
+    </div>
+    <div class="block">
+      <app-persona-metadata-tags [persona]="chatStore.persona()!"/>
+    </div>
+  }
+</div>

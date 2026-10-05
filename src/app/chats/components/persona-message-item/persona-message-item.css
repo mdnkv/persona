@@ -1,0 +1,11 @@
+.app-persona-message-item {
+  justify-content: flex-start;
+}
+
+.app-persona-message-bubble {
+  width: 70%;
+  border-radius: 10px 10px 10px 0px;
+  background: linear-gradient(45deg, #4159d0 0.000%, #c84fc0 50.000%, #ffcd70 100.000%);
+  color: white;
+  padding: 8px;
+}

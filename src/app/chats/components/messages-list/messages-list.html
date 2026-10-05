@@ -1,0 +1,12 @@
+@if (chatStore.areMessagesLoaded()){
+  @for (chatMessage of chatStore.messages(); track chatMessage.id) {
+    @switch (chatMessage.messageRole){
+      @case ('PERSONA'){
+        <app-persona-message-item [chatMessage]="chatMessage"/>
+      }
+      @case ('USER') {
+        <app-user-message-item [chatMessage]="chatMessage"/>
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+.app-user-message-item {
+  justify-content: flex-end;
+}
+
+.app-user-message-bubble {
+  width: 70%;
+  padding: 8px;
+  border-radius: 10px 10px 0px 10px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .app-user-message-bubble {
+    background-color: #424242;
+    color: white;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .app-user-message-bubble {
+    background-color: #ECEFF1;
+    color: #37474F;
+  }
+}

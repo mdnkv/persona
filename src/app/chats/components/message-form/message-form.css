@@ -1,0 +1,41 @@
+.app-message-form-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 6px;
+  width: 100%;
+}
+
+.app-message-form-content {
+  border-radius: 12px;;
+  padding: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .app-message-form-content {
+    background-color: #212121;
+  }
+
+  .app-message-form-textarea {
+    color: #FAFAFA;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .app-message-form-content {
+    background-color: #B0BEC5;
+  }
+
+  .app-message-form-textarea {
+    color: #37474F;
+  }
+}
+
+.app-message-form-textarea {
+  width: 100%;
+  background: none;
+  border: none;
+  outline: none;
+  resize: none;
+  font-size: 1.2rem;
+}

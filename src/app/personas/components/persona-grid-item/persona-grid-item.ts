@@ -12,11 +12,14 @@ import { IconButton } from '../../../shared/components/icon-button/icon-button';
 export class PersonaGridItem {
   persona = input.required<PersonaResponse>();
   onOpenPersonaSettings = output<string>();
+  onOpenChat = output<string>();
 
   onSettingsClicked() {
     this.onOpenPersonaSettings.emit(this.persona().id)
   }
 
-  onChatClicked() {}
+  onChatClicked() {
+    this.onOpenChat.emit(this.persona().id)
+  }
 
 }
