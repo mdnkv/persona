@@ -1,8 +1,12 @@
+import { inject } from '@angular/core';
+
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 
 import { ChatMessageResponse, CreateChatMessageRequest } from '../models/chats.models';
 import { PersonaResponse } from '../../personas/models/personas.models';
-import { MOCK_MESSAGES, MOCK_PERSONA } from '../mocks';
+import { ChatService } from '../services/chat.services';
+
+import { PersonaService } from '../../personas/services/persona.services';
 
 interface ChatState {
   isPersonaLoaded: boolean
@@ -24,6 +28,8 @@ export const ChatStore = signalStore(
   {providedIn: 'root'},
   withState(initialState),
   withMethods(store => {
+    const chatService: ChatService = inject(ChatService)
+    const personaService: PersonaService = inject(PersonaService)
     return {
       loadChatForPersona(personaId: string){
         patchState(store, {personaId, isPersonaLoaded: false, areMessagesLoaded: false})
@@ -33,26 +39,29 @@ export const ChatStore = signalStore(
         this.loadMessages(personaId)
       },
       loadMessages(personaId: string){
-        // todo
-        patchState(store, {messages: MOCK_MESSAGES, areMessagesLoaded: true})
+        chatService.getMessagesForPersona(personaId).subscribe({
+          next: result => {
+            patchState(store, {areMessagesLoaded: true, messages: result})
+          },
+          error: err => {console.log(err)}
+        })
+
       },
       loadPersona(personaId: string){
-        // todo
-        patchState(store, {persona: MOCK_PERSONA, isPersonaLoaded: true})
+        personaService.getPersonaById(personaId).subscribe({
+          next: result => {
+            patchState(store, {persona: result, isPersonaLoaded: true})
+          },
+          error: err => {console.log(err)}
+        })
       },
       sendMessage (payload: CreateChatMessageRequest) {
-        // todo
-        console.log(payload)
-        const message: ChatMessageResponse = {
-          id: '' + (store.messages().length + 1),
-          content: payload.content,
-          messageRole: 'USER',
-          personaId: store.personaId()
-        }
-        console.log(message)
-        // const updatedMessages = store.messages()
-        // updatedMessages.push(message)
-        patchState(store, {messages: [...store.messages(), message]})
+        chatService.sendMessage(payload).subscribe({
+          next: result => {
+            patchState(store, {messages: [...store.messages(), result[0], result[1]]})
+          },
+          error: err => {console.log(err)}
+        })
       }
     }
   })
