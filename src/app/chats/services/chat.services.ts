@@ -13,11 +13,11 @@ export class ChatService {
   serverUrl: string = environment.serverRoot;
 
   getMessagesForPersona(personaId: string): Observable<ChatMessageResponse[]>{
-    return this.http.get<ChatMessageResponse[]>(`http://localhost:8001/chats/persona/${personaId}`)
+    return this.http.get<ChatMessageResponse[]>(`${this.serverUrl}/chats/persona/${personaId}`)
   }
 
   sendMessage (body: CreateChatMessageRequest ): Observable<ChatMessageResponse[]> {
-    return this.http.post<ChatMessageResponse[]>(`http://localhost:8001/chats/send`, body)
+    return this.http.post<ChatMessageResponse[]>(`${this.serverUrl}/chats/send`, body)
   }
 
 }
